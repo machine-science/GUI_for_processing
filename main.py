@@ -1,6 +1,7 @@
 from tkinter import ttk, Tk, Frame, Button, BOTTOM, CENTER, filedialog
 import os
 from PyPDF2 import PdfFileReader, PdfFileWriter
+import splitPDF
 
 
 class Main(object):
@@ -22,20 +23,20 @@ class Main(object):
         self.merge_button.place(relx=.5, rely=.7,anchor= CENTER)
         
     def splitPdf(self):
-        pdf_path = filedialog.askopenfilename()
-        fname = os.path.splitext(os.path.basename(pdf_path))[0]
-        pdf = PdfFileReader(pdf_path)
-        outPath = filedialog.askdirectory(title = "Select a folder where the files should be saved")
-        for page in range(pdf.getNumPages()):
-            print(page)
-            pdfwrite = PdfFileWriter()
-            pdfwrite.addPage(pdf.getPage(page))
-            outputfilename = '{}_page_{}.pdf'.format(
-                fname, page+1)
-            outputfile = os.path.join(outPath, outputfilename)
-            with open(outputfile, 'wb') as out:
-                pdfwrite.write(out)
-            print('Created: {}'.format(outputfilename))
+        pdfSplit = splitPDF.SplitPDF()
+        # pdf_path = filedialog.askopenfilename(title = "Select a PDF file")
+        # fname = os.path.splitext(os.path.basename(pdf_path))[0]
+        # pdf = PdfFileReader(pdf_path)
+        # outPath = filedialog.askdirectory(title = "Select a folder where the files should be saved")
+        # for page in range(pdf.getNumPages()):
+        #     pdfwrite = PdfFileWriter()
+        #     pdfwrite.addPage(pdf.getPage(page))
+        #     outputfilename = '{}_page_{}.pdf'.format(
+        #         fname, page+1)
+        #     outputfile = os.path.join(outPath, outputfilename)
+        #     with open(outputfile, 'wb') as out:
+        #         pdfwrite.write(out)
+        #     print('Created: {}'.format(outputfilename))
         
         
 def main():
@@ -43,6 +44,7 @@ def main():
     app = Main(root)
     root.title("Main Page")
     root.geometry("500x500+500+150")
+    root.resizable(False, False)
     root.iconbitmap('IFLogo.ico')
     root.mainloop()
 
