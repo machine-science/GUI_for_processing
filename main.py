@@ -1,7 +1,7 @@
 from tkinter import ttk, Tk, Frame, Button, BOTTOM, CENTER, filedialog
 import os
 from PyPDF2 import PdfFileReader, PdfFileWriter
-import splitPDF
+import splitPDF, mergePDF
 
 
 class Main(object):
@@ -19,10 +19,16 @@ class Main(object):
         self.split_button = Button(self.centerFrame, width=50, height=2, bg='#63CD41', relief='sunken', text="Split PDF", command=self.splitPdf)
         self.split_button.place(relx=.5, rely=.2,anchor= CENTER)
         
-        self.merge_button = Button(self.centerFrame, width=50, height=2, bg='#63CD41', relief='sunken', text="Merger PDF", command=None)
+        self.merge_button = Button(self.centerFrame, width=50, height=2, bg='#63CD41', relief='sunken', text="Merger PDF", command=self.mergePdf)
         self.merge_button.place(relx=.5, rely=.7,anchor= CENTER)
         
+        
+    def mergePdf(self):
+        pdfmerge = mergePDF.MergePDF()
+        
+        
     def splitPdf(self):
+        self.master.withdraw()
         pdfSplit = splitPDF.SplitPDF()
         # pdf_path = filedialog.askopenfilename(title = "Select a PDF file")
         # fname = os.path.splitext(os.path.basename(pdf_path))[0]
