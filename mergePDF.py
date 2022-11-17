@@ -7,6 +7,7 @@ class MergePDF(Toplevel):
         self.geometry("500x500+500+150")
         self.iconbitmap('IFLogo.ico')
         self.resizable(False, False)
+        self.configure(bg='#CFF5E7')
         Toplevel.grab_set(self)
         
         # 
