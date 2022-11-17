@@ -13,6 +13,9 @@ class SplitPDF(Toplevel):
         self.resizable(False, False)
         Toplevel.grab_set(self)
         
+        self.backButton = Button(self, text="<< Back", command=self.goBack)
+        self.backButton.place(relx=0.1, rely=0.05)
+        
         # 
         self.textLabel1 = Label(self, text="Select your option")
         self.textLabel1.place(relx=0.25, rely=0.1)
@@ -43,6 +46,10 @@ class SplitPDF(Toplevel):
     def on_closing(self):
         if messagebox.askokcancel("Quit", "Do you want to quit?"):
             exit()
+            
+    def goBack(self):
+        Toplevel.destroy(self)
+        self.master.deiconify()
             
 
         
